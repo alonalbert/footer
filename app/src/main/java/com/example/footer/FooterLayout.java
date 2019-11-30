@@ -27,8 +27,6 @@ public class FooterLayout extends FrameLayout {
     private TextView text3;
     private View[] views;
     private final ConstraintSet set = new ConstraintSet();
-    private int seperator1Visibility;
-    private int seperator2Visibility;
 
     public FooterLayout(@NonNull Context context) {
         this(context, null);
@@ -98,6 +96,8 @@ public class FooterLayout extends FrameLayout {
         final int widthText3 = getChildWidthWithMargin(text3);
 
         set.clone(parent);
+        final int seperator1Visibility;
+        final int seperator2Visibility;
         if (widthText1 + widthSeparator1 + widthText2 + widthSeparator2 + widthText3 > maxWidth) {
             if (widthText1 + widthSeparator1 + widthText2 <= maxWidth) {
                 connectRow(set, R.id.parent, TOP, R.id.text3, TOP, R.id.text1, R.id.separator1, R.id.text2);
@@ -131,17 +131,13 @@ public class FooterLayout extends FrameLayout {
             text2.setMaxLines(1);
             text3.setMaxLines(1);
         }
-
         set.applyTo(parent);
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
 
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
+        // Visibility must be set after applying constraints
         separator1.setVisibility(seperator1Visibility);
         separator2.setVisibility(seperator2Visibility);
 
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     private void connectRow(ConstraintSet set, int top, int topSide, int bottom, int bottomSide, int... ids) {
