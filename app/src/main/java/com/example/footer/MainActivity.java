@@ -14,11 +14,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final FooterLayout footer = findViewById(R.id.footer);
+        final Footer2Layout footer = findViewById(R.id.footer);
         final EditText edit1 = findViewById(R.id.edit1);
         final EditText edit2 = findViewById(R.id.edit2);
         final EditText edit3 = findViewById(R.id.edit3);
 
+        footer.setText1("123456789 123456789 123456789");
+        footer.setText2("123456789 ");
+        footer.setText3("123456789 ");
         edit1.setText(footer.getText1());
         edit2.setText(footer.getText2());
         edit3.setText(footer.getText3());
